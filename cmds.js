@@ -187,7 +187,7 @@ exports.quitCmd=rl => {
 
 exports.creditsCmd = rl => {
 	log("Autores de la practica: ");
-    log("Daniel Lledó Raigal",'green');
-   	log("Alfonso Cebollero Massia",'green');
+    log("DANIEL Lledó Raigal",'green');
+   	log("ALFONSO Cebollero Massia",'green');
    	rl.prompt();
 };

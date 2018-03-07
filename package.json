@@ -1,21 +1,19 @@
 {
   "name": "quiz",
   "version": "1.0.0",
-  "description": "Proyecto Quiz",
+  "description": "Proyecto quiz",
   "main": "main.js",
   "scripts": {
-    "start" : "node main.js",
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "quiz",
-    "core",
-    "node"
+    "quiz"
   ],
-  "author": "Daniel Lledó Raigal",
+  "author": "Alfonso",
   "license": "Unlicense",
-  "dependencies":{
-    "chalk": "^2.3.1",
+  "dependencies": {
+    "chalk": "^2.3.2",
     "figlet": "^1.2.0"
   }
 }

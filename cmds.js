@@ -1,26 +1,32 @@
-const model= require('./model');
-
+const model = require('./model');
 const {log, biglog, errorlog, colorize}= require("./out");
 
+
+
 exports.helpCmd = rl => {
-	log('Comandos:');
-	log(" h/help - Muestra la ayuda.");
-	log(" list - Listar los quizzes existentes");
-	log(" show <id> - Muestra la pregunta y la respuesta del quiz indicado");
-	log(" add - Añadir un nuevo quiz existente");
-	log(" delete <id> - Borrar el quiz indicado");
-	log(" edit <id> - Editar el quiz indicado");
-	log(" test <id> - Probar el quiz indicado");
-	log(" p|play - Jugar a preguntas aleatorias de todos los quizzes");
-	log(" credits - Créditos");
-	log(" q|quiz - Salir del programa.");
-	rl.prompt();
+	log("Commandos:");
+	  	log(" h|help - Muestra esta ayuda.");
+	  	log(" list -Listar los quizzes existentes.");
+	  	log(" show <id> - Muestra la pregunta y la respuesta el quiz indicado");
+	  	log(" add- Añadir un nuevo quiz interactivamente.");
+	  	log(" delete <id> - Borrar el quiz indicado.");
+	  	log(" edit <id> - Editar el quiz indicado.");
+   		log(" test <id> - Probar el quiz indicado.");
+   		log(" p|play - Jugar a preguntar aleatoriamente todos los quizzes.")
+   		log(" credits - Créditos.");
+   		log(" q|quit - Salir del programa");
+   		rl.prompt();
 };
+
 exports.listCmd = rl => {
-	model.getAll().forEach((quiz,id) => {
-		log(`[${colorize(id,'magenta')}]: ${quiz.question}`);
-	});
-	rl.prompt();
+
+model.getAll().forEach((quiz, id) => {
+	log(`[${colorize(id, 'magenta')}]: ${quiz.question}`);
+
+});
+
+rl.prompt();
+
 };
 exports.showCmd = (rl,id) => {
 	
@@ -154,7 +160,7 @@ exports.playCmd = rl =>
 };
 
 
-exports.editCmd = (rl,id) => {
+exports.editCmd = (rl, id) => {
 	if( typeof id === "undefined"){
 		errorlog(`Falta el parametro id`);
 		rl.prompt();
@@ -181,13 +187,13 @@ exports.editCmd = (rl,id) => {
 };
 exports.quitCmd=rl => {
 	r1.close();
-
+rl.prompt;
 };
 
 
 exports.creditsCmd = rl => {
 	log("Autores de la practica: ");
-    log("DANIEL Lledó Raigal",'green');
-   	log("ALFONSO Cebollero Massia",'green');
+    log("Daniel Lledó Raigal",'green');
+   	log("Alfonso Cebollero Massia",'green');
    	rl.prompt();
 };

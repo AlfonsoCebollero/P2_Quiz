@@ -22,7 +22,7 @@ exports.listCmd = rl => {
 	});
 	rl.prompt();
 };
-exports.showCmd = (rl,id) => {
+exports.showCmd = (rl, id) => {
 	
 	if( typeof id === "undefined"){
 		errorlog(`Falta el parametro id`);
@@ -180,7 +180,8 @@ exports.editCmd = (rl,id) => {
 	}
 };
 exports.quitCmd=rl => {
-	r1.close();
+	rl.close();
+	rl.prompt();
 
 };
 

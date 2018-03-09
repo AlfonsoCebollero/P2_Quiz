@@ -16,12 +16,14 @@ exports.helpCmd = rl => {
 	log(" q|quiz - Salir del programa.");
 	rl.prompt();
 };
+
 exports.listCmd = rl => {
 	model.getAll().forEach((quiz,id) => {
 		log(`[${colorize(id,'magenta')}]: ${quiz.question}`);
 	});
 	rl.prompt();
 };
+
 exports.showCmd = (rl, id) => {
 	
 	if( typeof id === "undefined"){
@@ -43,10 +45,8 @@ exports.testCmd = (rl,id) => {
     } else {
         try{
             const quiz = model.getByIndex(id);
-           	rl.question(`${colorize(quiz.question, 'red')}`, answer=>{
-
-                const acier = answer.toLowerCase().trim();
-            if(acier==quiz.answer){
+           	rl.question(`${colorize(quiz.question, 'red')}`, answer=>{ 
+            if(answer.toLowerCase().trim()===quiz.answer.toLowerCase().trim()){
                 biglog("Correcta",'green');
                 rl.prompt();
             }

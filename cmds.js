@@ -129,7 +129,7 @@ exports.playCmd = rl => {
 				else{
 					log("\nIncorrecta\n",'red');
 					biglog("\nIncorrecta\n",'red');
-					biglog("Fin","red");
+					biglog("FIN DEL JUEGO","red");
 				    log(`Su resultado ha sido:`);
 					biglog(`${score}`,'red');
 					biglog("¡Pruebe otra vez!\n");

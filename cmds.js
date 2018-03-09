@@ -127,9 +127,9 @@ exports.playCmd = rl => {
 					playOne(); 
 				}
 				else{
-					log("\nIncorrecto\n",'red');
+					log("\nIncorrecta\n",'red');
 					biglog("\nIncorrecta\n",'red');
-					log("Fin del juego","red");
+					biglog("Fin del juego","red");
 				    log(`Su resultado ha sido:`);
 					biglog(`${score}`,'red');
 					biglog("¡Pruebe otra vez!\n");

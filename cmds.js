@@ -43,38 +43,24 @@ exports.testCmd = (rl,id) => {
     } else {
         try{
             const quiz = model.getByIndex(id);
+           	rl.question(`${colorize(quiz.question, 'red')}`, answer=>{
 
-
-
-
-            rl.question(`${colorize(quiz.question, 'red')}`, answer=>{
-
-                const bien = answer.trim();
-
-            if(bien==quiz.answer){
-
-                log("Su respuesta es correcta");
+                const acier = answer.toLowerCase().trim();
+            if(acier==quiz.answer){
+                biglog("Correcta",'green');
                 rl.prompt();
             }
 
             else{
-
-                log("Su respuesta es incorrecta");
+                biglog("Incorrecta",'red');
                 rl.prompt();
             }
-
         });
-
-
-
-
         }catch(error){
             errorlog(error.message);
             rl.prompt();
         }
     }
-
-
 };
 exports.addCmd = rl => {
 	rl.question(colorize('Introduzca una pregunta: ','red'), question => {
@@ -86,77 +72,77 @@ exports.addCmd = rl => {
 	});
 	
 };
-exports.deleteCmd = (rl,id) => {
-	if( typeof id === "undefined"){
-		errorlog(`Falta el parametro id`);
+exports.deleteCmd = (rl, id) => {
+		if (typeof id === "undefined") {
+		errorlog('Falta el parametro id. ');
 	} else {
-		try{
-			 model.deleteByIndex(id);
-		} catch(error) {
+		try {
+			model.deleteByIndex(id);
+		} catch (error) {
 			errorlog(error.message);
 		}
 	}
-
-
-	rl.prompt();
-};
-exports.playCmd = rl =>
-{
-    let score = 0;
-
-    let contador = model.count();
-
-    let toBeResolved=[];
-
-    for (i=0; i<model.count(); i++){
-
-        toBeResolved[i]=i;
-
-    }
-    const play = () => {
-    if(contador===0){
-        rl.prompt();
-
-        log(`Fin del juego. Aciertos ${colorize(score,'magenta')}`);
-
-
-    }
-    else{
-
-        let idaux= Math.round(Math.random()*(toBeResolved.length -1));
-        let id= toBeResolved[idaux];
-        let quiz = model.getByIndex(id);
-        toBeResolved.splice(idaux,1);
-        contador --;
-        rl.question(`${colorize(quiz.question, 'red')}`, answer=>{
-
-            const bien = answer.trim();
-
-        if(bien===quiz.answer){
-
-            score++;
-            log(`Su respuesta es correcta Aciertos ${colorize(score,'magenta')}`);
-
-            play();
-        }
-        else{
-
-            log(`Su respuesta es incorrecta. Fin del juego. Aciertos ${colorize(score,'magenta')}`);
-            rl.prompt();
-        }
-
-
-    });
-
-    }
-};
-    play();
+		rl.prompt();
 };
 
+exports.playCmd = rl => {
+
+	let score = 0; //variable que guarda la puntuación
+
+	let preguntasRestantes = []; //Array con índices de las preguntas que existen
+	
+	for (var i = 0; i < model.count(); i++){
+		//preguntasRestantes[i] = model.getByIndex[i];
+		preguntasRestantes[i] = i;
+	}	
+
+	const playOne = () => {
+
+		if(preguntasRestantes.length == 0){
+			log('¡No hay más preguntas!');
+			log(`Su puntuación final es... `);
+			biglog(`${score}`,'red');
+			log("¡¡¡ENHORABUENA!!!",'red');
+			rl.prompt();
+
+		} else {
+
+				let pos = Math.floor(Math.random() * preguntasRestantes.length);
+				let id = preguntasRestantes[pos];
+				let quiz = model.getByIndex(id);
+				preguntasRestantes.splice(pos, 1);
+
+
+				rl.question(colorize(quiz.question + "?\n",'yellow'), answer1 => {
+				if (String(answer1.trim().toLowerCase()) === String(quiz.answer.toLowerCase())){
+					score += 1;
+					log("....................................................................................................................................................................................");
+					log("\nCorrecto\n", 'green');
+					biglog("\nCorrecto\n", 'green');
+					if(score === 1) {log(`Lleva ${score} acierto`);	}
+					else {	log(`Lleva ${score} aciertos`);	}
+					playOne(); 
+				}
+				else{
+					log("\nIncorrecta\n",'red');
+					biglog("\nIncorrecta\n",'red');
+					biglog("FIN DEL JUEGO","red");
+				    log(`Su resultado ha sido:`);
+					biglog(`${score}`,'red');
+					biglog("¡Pruebe otra vez!\n");
+					rl.prompt();
+				}
+			});
+		}
+	}
+
+	playOne();
+
+};
 
 exports.editCmd = (rl,id) => {
 	if( typeof id === "undefined"){
-		errorlog(`Falta el parametro id`);
+		errorlog(`Falta el parametro id.`);
 		rl.prompt();
 	} else {
 		try{

@@ -1,4 +1,4 @@
-{ 
+{
   "name": "quiz",
   "version": "1.0.0",
   "description": "Proyecto Quiz",
@@ -12,7 +12,7 @@
     "core",
     "node"
   ],
-  "author": "Daniel Lledó Raigal",
+  "author": "Alfonso Cebollero",
   "license": "Unlicense",
   "dependencies":{
     "chalk": "^2.3.1",

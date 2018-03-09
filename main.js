@@ -73,7 +73,7 @@ rl.on('line', (line) => {
 
 
 	case 'delete':
-		cmds.deleteCMD(rl, args[1]);
+		cmds.deleteCmd(rl, args[1]);
 		break;
 
 

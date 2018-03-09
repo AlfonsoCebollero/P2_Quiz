@@ -78,12 +78,13 @@ exports.update =(id,question,answer) => {
 exports.getAll = () => JSON.parse(JSON.stringify(quizzes));
 // Devuelve el quiz con el id asignado
 exports.getByIndex = id => {
+
 	const quiz = quizzes[id];
-	if(typeof quiz === "undefined"){
-		throw new Error(`El valor del parametro no es válido`);
+	if (typeof quiz == "undefined") {
+		throw new Error ('El valor del parametro id no es valido');
 	}
 	return JSON.parse(JSON.stringify(quiz));
-}
+};
 // Elimina el quiz en la posicion dada
 exports.deleteByIndex = id => {
 	const quiz=quizzes[id];

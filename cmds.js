@@ -45,22 +45,25 @@ exports.testCmd = (rl,id) => {
     } else {
         try{
             const quiz = model.getByIndex(id);
-           	rl.question(`${colorize(quiz.question, 'red')}`, answer=>{ 
+           	rl.question(`${colorize(quiz.question + " ", 'red')}`, answer=>{ 
             if(answer.toLowerCase().trim()===quiz.answer.toLowerCase().trim()){
-                biglog("Correcta",'green');
+                log('Su respuesta es correcta');
+                biglog('Correcta','green');
                 rl.prompt();
             }
 
             else{
+            	log('Su respuesta es incorrecta');
                 biglog("Incorrecta",'red');
                 rl.prompt();
             }
         });
         }catch(error){
             errorlog(error.message);
-            rl.prompt();
+            
         }
     }
+    rl.prompt();
 };
 exports.addCmd = rl => {
 	rl.question(colorize('Introduzca una pregunta: ','red'), question => {

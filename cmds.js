@@ -127,14 +127,12 @@ exports.playCmd = rl => {
 					playOne(); 
 				}
 				else{
-					log("\nIncorrecta\n",'red');
-					biglog("\nIncorrecta\n",'red');
-					biglog("Fin del juego","red");
-				    log(`Su resultado ha sido:`);
-					biglog(`${score}`,'red');
-					biglog("¡Pruebe otra vez!\n");
-					rl.prompt();
-				}
+					log(`INCORRECTO`);
+					log(`Fin del juego, aciertos`);
+					biglog(score, 'blue');
+		
+					
+				} rl.prompt();
 			});
 		}
 	}
